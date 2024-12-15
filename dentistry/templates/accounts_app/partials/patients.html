@@ -1,0 +1,20 @@
+{% extends 'user_panel_base.html' %}
+{% load render_partial %}
+
+{% block title %}
+  بیماران
+{% endblock %}
+
+{% block content %}
+  <div>
+    <div style="padding: 10px; margin: 10px;">
+
+      {% include "accounts_app/partials/search_patient.html" %}
+
+      <div id="table_patient">
+        {% render_partial "accounts:table_patients" %}
+      </div>
+        
+
+  </div>
+{% endblock %}

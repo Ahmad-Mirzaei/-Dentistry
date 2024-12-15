@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}login{% endblock title %}
+{% block content %}
+
+    <div class="site__body">
+        <div class="page-header">
+            <div class="page-header__container container">
+                <div class="page-header__breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">خانه</a>
+                                /
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="">حساب کاربری</a>
+                                /
+                            </li>
+                            <li class="active" aria-current="page"> ایجاد حساب کاربری</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="page-header__title d-flex justify-content-center">
+                    <h1>ایجاد حساب کاربری جدید</h1></div>
+            </div>
+        </div>
+        <div class="block">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-6 d-flex mt-4 mt-md-0">
+                        <div class="card flex-grow-1 mb-0">
+                            <div class="card-body">
+                                <h3 class="card-title">ثبت نام</h3>
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        {{form}}
+                                    <button type="submit" class="btn btn-primary mt-4">ثبت نام</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- site__body / end -->
+
+
+{% endblock content %}

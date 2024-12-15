@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% comment %} {% load persiandate %} {% endcomment %}
+{% block title %}بلاگ{% endblock title %}
+
+{% block content %}
+    
+		<!-- site__body -->
+		<div class="site__body">
+			<div class="page-header">
+				<div class="page-header__container container">
+					<div class="page-header__breadcrumb">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="/">خانه</a>
+									/
+								</li>
+
+								<li class="breadcrumb-item active" aria-current="page">مقالات</li>
+							</ol>
+						</nav>
+					</div>
+					<div class="page-header__title">
+						<h1>لیست مقالات</h1>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-lg-8">
+						<div class="block">
+							<div class="posts-view">
+								<div class="posts-view__list posts-list posts-list--layout--list">
+									<div class="posts-list__body">
+
+                                        {% for disease in diseases %}
+
+											<div class="posts-list__item">
+												<div class="post-card post-card--layout--list post-card--size--nl">
+													<div class="post-card__image">
+														<img style="width: 100%;" src="{{media_url}}images/diseases/defualt.png" alt="">
+													</div>
+													<div class="post-card__info">
+														
+                                                        <div class="post-card__name">
+                                                            <br>
+                                                            <a href="">
+                                                                {{disease.title}}
+                                                            </a>
+                                                            
+                                                        </div>
+                                                        <div class="post-card__date">
+                                                            {{ disease.get_shamsi_date }}
+                                                        </div>
+                                                        <div class="post-card__content">
+                                                            {{disease.summary_description}}
+                                                        </div>
+
+
+														<div class="post-card__read-more">
+															<a href="{% url "diseases:detail_blog" id=disease.id %}" class="btn btn-secondary btn-sm">بیشتر بخوانید</a>
+														</div>
+													</div>
+												</div>
+											</div>
+                                        {% endfor %}
+									</div>
+								</div>
+								<br>
+								<br>
+
+
+
+								<!--Pagination-->
+								<nav aria-label="Page navigation example">
+									<ul class="pagination justify-content-center">
+									
+									<!--Previous-->
+									{% if page_obj.has_previous %}
+									<li class="page-item">
+										<a class="page-link" href="?page={{ page_obj.previous_page_number }}">قبلی</a>
+									</li>
+									{% else %}
+									<li class="page-item disabled">
+										<a class="page-link" href="#" tabindex="-1" aria-disabled="True">قبلی</a>
+									</li>
+									{% endif %}
+									<!--end Previous-->
+
+
+									<!--Hellip-->
+									{% if page_obj.number|add:'-4' > 1 %}
+										<li class="page-item"><a class="page-link" href="?page={{ page_obj.number|add:'-5' }}">&hellip;</a></li>
+									{% endif %}
+									<!--end Hellip-->
+
+
+									<!--Pager-->
+									{% for i in page_obj.paginator.page_range %}
+										{% if page_obj.number == i %}
+											<li class="page-item active" aria-current="page">
+												<span class="page-link">
+													{{ i }}
+													<span class="sr-only">(current)</span>
+												</span>
+											</li>
+										{% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %}
+											<li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+										{% endif %}
+									{% endfor %}
+									<!--end Pager-->
+
+
+									<!--Hellip-->   
+									{% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+									<li class="page-item"><a class="page-link" href="?page={{ page_obj.number|add:'5' }}">&hellip;</a></li>
+									{% endif %}
+									<!--end Hellip-->
+
+
+									<!--Next-->
+									{% if page_obj.has_next %}
+										<li class="page-item">
+										<a class="page-link" href="?page={{ page_obj.next_page_number }}">بعدی</a>
+									</li>
+									{% else %}
+										<li class="page-item disabled">
+										<a class="page-link" href="#" tabindex="-1" aria-disabled="True">بعدی</a>
+									</li>
+									{% endif %}
+									<!--end Next-->
+									
+								</ul>
+								</nav>
+								<!--end of Pagination-->
+
+
+
+
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-lg-4">
+						<div class="block block-sidebar block-sidebar--position--end">
+
+							<div class="block-sidebar__item">
+								<div class="widget-search">
+									<form class="widget-search__body" action="{% url "search:q_blog" %}">
+										<input class="widget-search__input" placeholder="جستجوی بلاگ ..." type="text"
+											autocomplete="off" spellcheck="false" name="q_blog">
+										<button class="widget-search__button" type="submit">
+											<i class="fa fa-search"></i>
+										</button>
+									</form>
+								</div>
+							</div>
+
+							<div class="block-sidebar__item">
+								<div class="widget-posts widget">
+									<h4 class="widget__title">آخرین مطالب</h4>
+									<div class="widget-posts__list">
+
+                                        {% for last_disease in last_diseases %}
+                                            <div class="widget-posts__item">
+                                                <div class="widget-posts__info">
+    
+                                                    <div class="widget-posts__date">
+                                                        {{last_disease.get_shamsi_date}}
+                                                    </div>
+
+                                                    <div class="widget-posts__name font-weight-bold">
+                                                            {{ last_disease.title }}
+                                                    </div>
+
+                                                    <div class="widget-posts__info" style="font-size: 12px; !important">
+                                                        {{last_disease.summary_description}}
+                                                    </div>
+													<div class="post-card__read-more">
+														<a href="{% url 'diseases:detail_blog' id=last_disease.id %}" class="btn btn-secondary btn-sm">بیشتر بخوانید</a>
+													</div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+
+									</div>
+								</div>
+							</div>
+
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- site__body / end -->
+
+{% endblock content %}

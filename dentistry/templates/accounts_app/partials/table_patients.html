@@ -1,0 +1,58 @@
+
+{% if patients %}
+<table class="table table-bordered">
+    <thead>
+    <tr class="text-center">
+        <th>نام</th>
+        <th>نام خانوادگی</th>
+        <th>شماره موبایل</th>
+        <th>کد ملی</th>
+        <th>تاریخ مراجعه</th>
+        <th>بیماری ها</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody id="body_patients">
+    {% for patient in patients %}
+        <tr>
+        <td><a class="text-info" href="{% url 'accounts:edit_patient' id=patient.id %}">{{ patient.name }}</a></td>
+        <td>{{ patient.family }}</td>
+        <td>{{ patient.phone_number }}</td>
+        <td>{{ patient.patient_national_id }}</td>
+        <td>
+            {% for visit in patient.visits.all %}
+                {{ visit.get_shamsi_date_visit }}
+                <br>
+            {% endfor %}
+        </td>
+
+        <td style="width: auto; !important">
+            {% if patient.diseases.all %}
+                {% for disease in patient.diseases.all %}
+                    <span>{{ disease }}</span>{% if not forloop.last %},<br/>{% endif %}
+                {% endfor %}
+                <br>
+                <a class="text-info" href="{% url 'diseases:part_blog' id=patient.id %}"><span style="font-size: 14px">توضیحات</span></a>
+                {% else %}
+                    <span class="text-danger">بدون بیماری</span>
+            {% endif %}
+        </td>
+
+        <td>
+            <a class="text-danger" onclick="deletePatient({{patient.id}})" style="cursor: pointer;">حذف</i></a>
+        </td> 
+
+        {% comment %} <td>
+            <a href="{% url 'accounts:edit_patient' id=patient.id %}" class="btn btn-info">ویرایش</a>
+        </td> {% endcomment %}
+        </tr>
+    {% endfor %}
+
+</table>
+{% else %}
+<table class="table table-bordered">
+    <tr>
+        <td colspan="7" class="text-center">بیماری یافت نشد</td>
+    </tr>
+</table>
+{% endif %}

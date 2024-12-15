@@ -1,0 +1,7 @@
+asgiref==3.8.1
+Django==5.1.2
+django-ajax-search==1.5.1
+mysql-connector-python==9.1.0
+sqlparse==0.5.1
+typing_extensions==4.12.2
+tzdata==2024.2

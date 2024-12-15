@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}welcom{% endblock title %}
+
+{% block content %}
+
+
+<div class="page-header">
+    <div class="page-header__container container">
+
+    </div>
+</div>
+<div class="block-empty__body">
+    <div class="block-empty__message">
+        <h1>کاربر گرامی به سایت ما خوش آمدی</h1>
+    </div>
+    {% if user.is_authenticated %} 
+        <a class="btn btn-primary btn-sm" href="{% url 'accounts:user_panel' %}">ورود به پنل کاربری</a>
+        
+    {% else %}
+    <a class="btn btn-primary btn-sm" href="{% url 'accounts:login' %}">ورود</a>
+    <a class="btn btn-primary btn-sm" href="{% url 'accounts:register' %}">ثبت نام</a>
+
+    {% endif %}
+</div>
+</div>
+{% endblock content %}

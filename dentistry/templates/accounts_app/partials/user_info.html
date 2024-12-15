@@ -1,0 +1,37 @@
+
+
+{% comment %} <div class="dashboard"> {% endcomment %}
+    <div class="dashboard__profile card profile-card">
+        <div class="card-body profile-card__body">
+            <div class="fa fa-user"></div>
+            {% comment %} <div class="profile-card__avatar"><img src="../images/avatars/avatar-2.jpg" alt=""></div> {% endcomment %}
+            <div class="profile-card__name">{{dentist.name}} {{dentist.family}}</div>
+            <div class="profile-card__email">{{dentist.email}}</div>
+            <div class="profile-card__edit"><a href="{% url "accounts:edite_profile" %}" class="btn btn-secondary btn-sm">ویرایش پروفایل</a></div>
+        </div>
+    </div>
+    <div class="dashboard__address card address-card address-card--featured">
+        <div class="address-card__badge">اطلاعات</div>
+        <div class="address-card__body">
+            <div class="address-card__name">{{dentist.name}} {{dentist.family}}</div>
+            <div class="address-card__row">
+                <div class="address-card__row-title">تخصص</div>
+                {{dentist.specialty}} 
+                <br>
+                <div class="address-card__row-title">تاریخ ثبت نام</div>
+                {{dentist.register_date}}
+
+            <div class="address-card__row">
+                <div class="address-card__row-title">شماره تلفن</div>
+                <div class="address-card__row-content"><span class="ltr_text">{{dentist.mobile_number}}</span></div>
+            </div>
+            <br>
+            <br>
+
+        </div>
+    </div>
+
+{% comment %} </div> {% endcomment %}
+
+
+

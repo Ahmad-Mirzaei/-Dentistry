@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}جزییات مقاله{% endblock title %}
+
+
+{% block content %}
+<div class="site__body">
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">خانه</a>
+                            /
+                        </li>
+                        
+                        <li class="breadcrumb-item active" aria-current="page">مقاله</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-9 col-xl-8">
+                <div class="block post post--layout--full">
+                    <div class="post__header post-header post-header--layout--full">
+                        
+                        <h3 class="post-header__title">{{disease.title}}</h3>
+                        <div class="post-header__meta">
+                            <div class="post-header__meta-item"><a href="">{{disease.get_shamsi_date}}</a></div>
+                        </div> 
+                    </div>
+                    <div class="post__featured">
+                        <a href=""><img style="width: 50%;" src="{{media_url}}images/diseases/defualt.png" alt=""></a>
+                    </div>
+                    <div class="post__content typography typography--expanded">
+                        {% autoescape off %}
+                            {{disease.description}}
+                        {% endautoescape %}
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

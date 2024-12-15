@@ -1,0 +1,17 @@
+{% extends 'user_panel_base.html' %}
+
+{% block title %}ویرایش پروفایل{% endblock title %}
+
+{% block content %}
+
+    <form action="", method="post">
+        {% csrf_token %}
+        {{form.as_p}}        
+        <button type="submit" class="btn btn-primary mt-4">ذخیره</button>
+        <a href="{% url 'accounts:user_panel' %}" type="submit" class="btn btn-info mt-4">انصراف</a>
+    </form>
+
+{% endblock content %}
+
+
+

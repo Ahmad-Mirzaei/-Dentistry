@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}خطای404{% endblock title %}
+
+{% block content %}
+<div class="site__body">
+    <div class="block">
+        <div class="container">
+            <div class="not-found">
+                <div class="not-found__404"> خطای 404</div>
+                <div class="not-found__content">
+                    <h1 class="not-found__title">صفحه مورد نظر پیدا نشد</h1>
+                    <p class="not-found__text">ما صفحه ای که دنبال آن بودید را پیدا نکردیم.
+                    </p>
+                    <a class="btn btn-secondary btn-sm" href="/">رفتن به صفحه خانه</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

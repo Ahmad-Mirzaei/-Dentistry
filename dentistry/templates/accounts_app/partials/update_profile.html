@@ -1,0 +1,42 @@
+	{% extends 'user_panel_template.html' %}
+		
+	{% block title %}ویرایش پروفایل{% endblock title %}
+
+	{% block content %}
+		<!-- site__body -->
+
+		<div class="card">
+			<div class="card-header">
+				<h5>ویرایش پروفایل</h5></div>
+			<div class="card-divider"></div>
+			<div class="card-body">
+				<div class="row no-gutters">
+					<div class="col-12 col-lg-7 col-xl-6">
+						<form action="" method="post" enctype="multipart/form-data">
+							{% csrf_token %}
+							{{form.as_p}}
+
+							{% if image_url %}
+								<div class="profile-card__avatar"><img src="{{ media_url }}{{image_url}}"  style="width: 100px; height: 100px;" alt=""></div>
+							{% else %}
+								<img src="{{ media_url }}images/customer/nophoto.png" style="width: 100px; height: 100px;" alt="">
+							{% endif %}
+
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary mt-4">ویرایش</button>
+								<a href="{% url 'accounts:userpanel' %}" class="btn btn-info mt-4">انصراف</a>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	
+		<!-- site__body / end -->	
+	
+
+
+
+{% endblock content %}

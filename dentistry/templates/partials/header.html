@@ -1,0 +1,46 @@
+
+<!-- .topbar -->
+	<div class="site-header__middle container">
+		<div class="site-header__logo">
+			<a href="index.html">
+				<img src="{{ media_url }}images/logo.png" alt="" width="150px">
+			</a>
+		</div>
+		<div class="site-header__search">
+		</div>
+		<div class="site-header__phone">
+			<div class="site-header__phone-title">پشتیبانی</div>
+			<div class="site-header__phone-number"><span class="ltr_text">081-45231</span></div>
+		</div>
+	</div>
+
+		<div class="site-header__topbar topbar">
+			<div class="topbar__container container">
+				<div class="topbar__row">
+					<div class="topbar__item topbar__item--link"><a class="topbar-link" href="{% url "accounts:contact_us" %}">تماس با ما</a></div>
+					<div class="topbar__item topbar__item--link"><a class="topbar-link" href="{% url "diseases:blog" %}">بلاگ</a></div>
+					<div class="topbar__spring"></div>
+					<div class="topbar__item">
+						<div class="topbar-dropdown">
+
+							{% if user.is_authenticated %}
+								<button class="topbar-dropdown__btn" type="button">
+								<a href="{% url 'accounts:logout' %}" class="topbar-link">خروج</a>
+								</button>
+
+								<button class="topbar-dropdown__btn" type="button">
+								<a href="{% url 'accounts:user_panel' %}" class="topbar-link">پنل کاربری</a>
+								<i class="fa fa-user"></i>
+								</button>
+							{% endif %}
+							
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+<!-- .topbar / end -->
+
+

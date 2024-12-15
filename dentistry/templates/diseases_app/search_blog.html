@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}جستجو مقاله{% endblock title %}
+
+{% block content %}
+
+{% if diseases %}
+
+<div class="site__body">
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">خانه</a>
+                            /
+                        </li>
+
+                        <li class="breadcrumb-item active" aria-current="page">مقالات</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="page-header__title">
+                <h1>لیست مقالات</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="block">
+                    <div class="posts-view">
+                        <div class="posts-view__list posts-list posts-list--layout--list">
+                            <div class="posts-list__body">
+
+                                {% for disease in diseases %}
+
+                                    <div class="posts-list__item">
+                                        <div class="post-card post-card--layout--list post-card--size--nl">
+                                            <div class="post-card__image">
+                                                <img src="{{media_url}}images/diseases/defualt.png" alt="">
+                                            </div>
+                                            <div class="post-card__info">
+                                                
+                                                <div class="post-card__name">
+                                                    <br>
+                                                    <a href="">
+                                                        {{disease.title}}
+                                                    </a>
+                                                    
+                                                </div>
+                                                <div class="post-card__date">
+                                                    {{ disease.get_shamsi_date }}
+                                                </div>
+                                                <div class="post-card__content">
+                                                    {{disease.summary_description}}
+                                                </div>
+
+
+                                                <div class="post-card__read-more">
+                                                    <a href="{% url "diseases:detail_blog" id=disease.id %}" class="btn btn-secondary btn-sm">بیشتر بخوانید</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+
+{% else %}
+    <div style="font-size: large; !important" class="container text-center">
+        <span>مقاله ای با این عنوان پیدا نشد</span>
+    </div>
+{% endif %}
+
+{% endblock content %}
