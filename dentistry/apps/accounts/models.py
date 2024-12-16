@@ -73,6 +73,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         verbose_name = 'کاربر'
         verbose_name_plural = 'کاربران'
 
+
 class Patient(models.Model):
     name = models.CharField(max_length=50, null=True, blank=True, verbose_name='نام')
     family = models.CharField(max_length=50, null=True, blank=True, verbose_name='نام خانوادگی')
