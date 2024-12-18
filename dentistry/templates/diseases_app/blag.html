@@ -34,7 +34,7 @@
 									<div class="posts-view__list posts-list posts-list--layout--list">
 										<div class="posts-list__body">
 
-											{% for disease in diseases %}
+											{% for disease in page_obj.object_list %}
 
 												<div class="posts-list__item">
 													<div class="post-card post-card--layout--list post-card--size--nl">
